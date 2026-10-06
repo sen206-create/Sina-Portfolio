@@ -22,7 +22,7 @@ The [project file](Projects/PD_EEG_FIRST.md) includes descriptions of the coding
 <p align="center">· · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · ·</p>
 <div align="left">
 
- ### Concepts and Skills course, University of Bristol (WORK IN PROGRESS)
+ ### Concepts and Skills Course, University of Bristol (WORK IN PROGRESS)
  
 This is from a my final-year course on statistic and R coding.
 
