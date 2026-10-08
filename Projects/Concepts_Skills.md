@@ -1,6 +1,6 @@
 # Statistics with R
 
-> **Work in progress:** A six-section project from my statistics class. Only Sections 1-3 is included so far. Come back for new sections, updated results, and progress as I learn.
+> Script for sections 1-2.
 
 [View the R script](IQ_analysis.R)
 
@@ -40,8 +40,17 @@ I extend the analysis beyond brain size alone, examining a model that includes b
 
 The two-predictor model accounted for approximately **28.5% of the observed variation in PIQ**. The single regression model from section 1 only accounted for 15%.
 
-## Sections 3–6
+## Sections 3: ANOVA and Planned Contrasts
 
+> **Work in progress:** A six-section project from my statistics class. Only Sections 1-3 is included so far. Come back for new sections, updated results, and progress as I learn.
 
+[View the R script](IQ_analysis.R)
+
+The data set contained data on bone mineral density (BMD, measured in mg/cm2 ) from mice that were randomly allocated into six treatment groups that received different doses of oestrogen (or vehicle). Following one month of treatment, the mice were killed and the BMD measured for their left proximal tibia.
+
+**In this section, I analysed the data to answer the following questions:**
+1.) Does oestrogen treatment affect mean BMD in the left proximal tibia?
+2.) Does mean BMD in mice treated with doses of oestrogen greater than 300 mg/kg/day differ from BMD in mice treated with doses of between 3 and 300 mg/kg/day?
+3.) Is there a trend for bone density to change with oestrogen dose?
 
 **Coming as the class progresses.** Topics and code will be added here—check back to follow the project.
