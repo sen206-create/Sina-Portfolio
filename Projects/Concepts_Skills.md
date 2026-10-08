@@ -42,8 +42,6 @@ The two-predictor model accounted for approximately **28.5% of the observed vari
 
 ## Sections 3: ANOVA and Planned Contrasts
 
-> **Work in progress:** A six-section project from my statistics class. Only Sections 1-3 is included so far. Come back for new sections, updated results, and progress as I learn.
-
 [View the R script](Oestrogen.R)
 
 The data set contained data on bone mineral density (BMD, measured in mg/cm2 ) from mice that were randomly allocated into six treatment groups that received different doses of oestrogen (or vehicle). Following one month of treatment, the mice were killed and the BMD measured for their left proximal tibia.
