@@ -13,14 +13,6 @@ PIQ_model = lm(PIQ ~ brain_size, data = IQ_dataset, na.action = na.exclude)
 summary(PIQ_model)
 ```
 
-### What the script covers
-
-- **Visualisation:** Scatterplot with a fitted regression line.
-- **Model interpretation:** Coefficients, confidence intervals, R², and statistical tests.
-- **Diagnostics:** Standardised residuals, Q–Q plots, and a Shapiro–Wilk test.
-- **Influence:** Identify observations that strongly affect the model.
-- **Bootstrapping:** Explore uncertainty in parameter estimates through resampling.
-
 **Tools:** R, tidyverse, easystats, readxl, and qqplotr.
 
 ![](Figures/slrplot.png)
@@ -40,16 +32,18 @@ The fitted equation was:
 I extend the analysis beyond brain size alone, examining a model that includes brain size and height as predictors of PIQ.
 
 - **Improved fit:** Adding height increased R² from .150 to .285. The improvement was statistically significant (p = .014), while the third model, gender, offered no significant further improvement (p = .554).
-- **Preferred model:** The brain-size-and-height model had the lowest AIC and BIC, with an adjusted R² of .245.
+- **Preferred model:** The brain size + height model had the lowest AIC and BIC, with an adjusted R² of .245.
 - **Predictor associations:** Holding the other predictor constant, brain size was positively associated with PIQ (standardised β = .659, p < .001), while height was negatively associated (β = −.458, p = .013).
 - **Diagnostics:** The Shapiro–Wilk test did not detect a significant departure from residual normality (p = .458). Both predictors had VIF = 1.55, suggesting limited multicollinearity.
-- **Influence:** Case 14 was flagged by the chosen influence-screening rule and warrants further examination.
-- **Sensitivity check:** Rank-based regression also found a positive brain-size association and a negative height association, both statistically significant.
+- **Influence:** Case 14 was flagged by the chosen influence screening rule and warrants further examination.
+- **Sensitivity check:** Rank based regression also found a positive brain size association and a negative height association, both statistically significant.
 
 The two-predictor model accounted for approximately **28.5% of the observed variation in PIQ**. The single regression model from section 1 only accounted for 15%.
 
 **Work in progress:** These steps investigate model fit and assumptions; conclusions will be added after reviewing the outputs. Come back for results and the next section.
 
 ## Sections 3–6
+
+
 
 **Coming as the class progresses.** Topics and code will be added here—check back to follow the project.
