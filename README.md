@@ -28,7 +28,7 @@ This is from a my final-year course on statistic and R coding.
 
 Here I use statistical and coding knowledge learnt in lectrues to analyse a dataset about IQ.
 
-The [project file](Projects/IQ_analysis.md) includes the code and relevant descriptions.
+The [project file](Projects/Concepts_Skills.md) includes the code and relevant descriptions.
 
 <p align="center">· · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · ·</p>
 <div align="left">
