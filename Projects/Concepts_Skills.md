@@ -44,13 +44,23 @@ The two-predictor model accounted for approximately **28.5% of the observed vari
 
 > **Work in progress:** A six-section project from my statistics class. Only Sections 1-3 is included so far. Come back for new sections, updated results, and progress as I learn.
 
-[View the R script](IQ_analysis.R)
+[View the R script](Oestrogen.R)
 
 The data set contained data on bone mineral density (BMD, measured in mg/cm2 ) from mice that were randomly allocated into six treatment groups that received different doses of oestrogen (or vehicle). Following one month of treatment, the mice were killed and the BMD measured for their left proximal tibia.
 
-**In this section, I analysed the data to answer the following questions:**
-1.) Does oestrogen treatment affect mean BMD in the left proximal tibia?
-2.) Does mean BMD in mice treated with doses of oestrogen greater than 300 mg/kg/day differ from BMD in mice treated with doses of between 3 and 300 mg/kg/day?
-3.) Is there a trend for bone density to change with oestrogen dose?
+### <ins>**In this section, I analysed the data to answer the following questions:**</ins>
 
-**Coming as the class progresses.** Topics and code will be added here—check back to follow the project.
+1.) Does oestrogen treatment affect mean BMD in the left proximal tibia?
+> Yes. Mean BMD differed significantly across oestrogen treatment groups, F(5, 47) = 16.53, p < .001, ω² = .59.
+
+2.) Does mean BMD in mice treated with doses of oestrogen greater than 300 mg/kg/day differ from BMD in mice treated with doses of between 3 and 300 mg/kg/day?
+> Yes. The high dose groups (400 and 4000 mg/kg/day) had significantly higher mean BMD than the middle dose groups (4 and 40 mg/kg/day), t(47) = 4.05, p < .001.
+
+3.) Is there a trend for bone density to change with oestrogen dose?
+> Yes. BMD showed a significant positive linear trend across the ordered dose groups, t(47) = 8.94, p < .001. This describes the trend across group positions, not a linear increase per mg/kg/day.
+
+
+![](Figures/RBoxPlot.png)
+
+
+**Section4-6 coming as the class progresses.** Topics and code will be added here—check back to follow the project.
