@@ -1,6 +1,6 @@
 # Statistics with R
 
-> **Work in progress:** A six-section project from my statistics class. Only Section 1 is included so far. Come back for new sections, updated results, and progress as I learn.
+> **Work in progress:** A six-section project from my statistics class. Only Sections 1-3 is included so far. Come back for new sections, updated results, and progress as I learn.
 
 [View the R script](IQ_analysis.R)
 
@@ -39,8 +39,6 @@ I extend the analysis beyond brain size alone, examining a model that includes b
 - **Sensitivity check:** Rank based regression also found a positive brain size association and a negative height association, both statistically significant.
 
 The two-predictor model accounted for approximately **28.5% of the observed variation in PIQ**. The single regression model from section 1 only accounted for 15%.
-
-**Work in progress:** These steps investigate model fit and assumptions; conclusions will be added after reviewing the outputs. Come back for results and the next section.
 
 ## Sections 3–6
 
