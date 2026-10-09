@@ -19,8 +19,7 @@ Heart_rate_long |>
 Heart_rate_long |>
   filter(is.na(heart_rate))
 
-ggplot(Heart_rate_long, aes(x = strain, y = heart_rate, fill = sex, colour =
-                              sex)) +
+ggplot(Heart_rate_long, aes(x = strain, y = heart_rate, fill = sex, colour = sex)) +
   geom_point(size = 1, position = position_jitterdodge(jitter.width = 0.3)) +
   geom_boxplot(alpha = .3, colour = "black", outliers = FALSE) +
   labs(x = 'Mice Strain', y = 'Heart Rate (BPM)' )+
