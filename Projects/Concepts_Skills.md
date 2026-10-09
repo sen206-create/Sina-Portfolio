@@ -60,5 +60,21 @@ The data set contained data on bone mineral density (BMD, measured in mg/cm2 ) f
 
 ![](Figures/RBoxPlot.png)
 
+## Sections 4: Factorial ANOVA
 
-**Section4-6 coming as the class progresses.** Topics and code will be added here—check back to follow the project.
+[View the R script](FactorialANOVA.R)
+
+### <ins>**In this section, I analysed the data to consider whether resting heart rate differs between males and females and whether these sex differences are affected by mouse strain.**</ins>
+
+Resting heart rate differed between males and females, and the size of this difference depended on mouse strain. The two-way ANOVA showed a significant effect of sex, F(1, 68) = 16.36, p < .001, and a significant sex × strain interaction, F(4, 68) = 4.73, p = .002. This interaction indicates that the sex difference was not consistent across strains.
+
+The reported Sidak-adjusted comparisons showed that:
+- DBA males had higher heart rates than females, by approximately 108 bpm (756.88 versus 649.00 bpm; p < .001).
+- CBA males had higher heart rates than females, by approximately 48 bpm (831.12 versus 782.75 bpm; p = .032).
+- No statistically significant sex differences were detected in C57BL/6, BALB/c or SWR mice (all p ≥ .637).
+
+The robust ANOVA also found significant effects of sex (p = .00015) and the sex × strain interaction (p = .00429), supporting the overall conclusion. Therefore, the evidence supports a sex difference that varies by strain, rather than a uniform difference across all mice. These analyses establish the statistical pattern but do not explain its biological cause.
+
+![](Figures/interactionplot.png)
+
+**Section 5-6 coming as the class progresses.** Topics and code will be added here—check back to follow the project.
