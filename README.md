@@ -24,7 +24,7 @@ The [project file](Projects/PD_EEG_FIRST.md) includes descriptions of the coding
 
  ### Statistics Course (part of the Concepts and Skills unit), University of Bristol (WORK IN PROGRESS)
  
-This is from a my final-year course on statistic and R coding.
+This is from a final-year course on statistic and R coding.
 
 Here I use statistical and coding knowledge learnt in lectrues to analyse a dataset about IQ.
 
