@@ -81,14 +81,23 @@ The robust ANOVA also found significant effects of sex (p = .00015) and the sex 
 
 [View the R script](RepeatedANOVA.R)
 
-### <ins>**In this section:**</ins>
+## Section 5: Repeated Measures ANOVA
 
-- I analysed the data to consider whether there is any evidence for an effect of sex on the action of acetylcholine or on the effects of the toxin administration. 
-- I considered whether acetylcholine has a relaxing effect inside or outside the artery.
+### <ins>**In this section, I analysed the data to consider whether sex affects the responses to acetylcholine and toxin administration, and whether the results support an internal or external site involved in acetylcholine-induced relaxation of the artery.**</ins>
+
+Blood vessel diameter differed between treatments, but there was no evidence that these responses depended on sex. A mixed two-way ANOVA on log-transformed diameter showed a significant effect of treatment, F(2.24, 29.11) = 31.69, p < .001. Neither the main effect of sex, F(1, 13) = 0.04, p = .844, nor the sex × treatment interaction, F(2.24, 29.11) = 0.68, p = .528, was significant. Greenhouse–Geisser corrections were applied because Mauchly’s test indicated a violation of sphericity (p < .001).
+
+The Bonferroni-adjusted comparisons showed that:
+
+- Acetylcholine (ACh) increased blood vessel diameter compared with control (p < .001), consistent with a relaxant effect.
+- Toxin administered inside the artery together with ACh produced a lower diameter than ACh alone (p < .001), indicating attenuation of the ACh response.
+- Toxin administered outside the artery together with ACh produced no statistically significant difference from ACh alone (p = .656), and diameter remained higher than control (p < .001).
+- Diameter was significantly higher with toxin(out) + ACh than with toxin(in) + ACh (p < .001).
+
+These results provide no evidence that the pattern of responses to ACh and toxin administration differs between males and females, although they do not prove identical responses. The reduction in the ACh response following internal toxin administration supports an internal site involved in relaxation, provided the toxin acts locally on the relevant mechanism and remains confined to the side where it is applied. Confirmation of the toxin’s mechanism is needed before making a firm conclusion about the site of action.
 
 
-
-![](Figures/interactionplot.png)
+![](Figures/Section5.png)
 
 
 **Section 6-7 coming as the class progresses.** Topics and code will be added here—check back to follow the project.
