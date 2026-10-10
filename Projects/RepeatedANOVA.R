@@ -5,12 +5,12 @@ library(easystats)
 #Setting up data
 bloodvessel_ACh = read_excel('bloodvessel ACh.xlsx')
 
-bloodvessel_ACh <- bloodvessel_ACh |>
+bloodvessel_ACh = bloodvessel_ACh |>
   mutate(rat_ID = factor(row_number()))
 
 bloodvessel_ACh_long = bloodvessel_ACh |>
   pivot_longer(cols = c('Control diameter (microns)','toxin(in)', 'toxin(out)', 'ACh', 'toxin(in) + ACh', 'toxin(out) + ACh'), names_to = 'Treatment', values_to = 'Diameter')
-bloodvessel_ACh_long <- bloodvessel_ACh_long |>
+bloodvessel_ACh_long = bloodvessel_ACh_long |>
   mutate(Treatment = as_factor(Treatment), sex = as_factor(sex))
 
 bloodvessel_ACh_long |>
@@ -36,7 +36,7 @@ model_parameters(control_diameter_afx, es_type = "omega")|>
   display(use_symbols = TRUE)
 
 #Standardising residuals
-bloodvessel_ACh_long <- bloodvessel_ACh_long |>
+bloodvessel_ACh_long = bloodvessel_ACh_long |>
   mutate(st_residual = (residuals(control_diameter_afx) - mean(residuals(control_diameter_afx)))/sd(residuals(control_diameter_afx)))
 
 #Checking normality of standardised residuals
@@ -59,8 +59,8 @@ ggplot(bloodvessel_ACh_long, aes(sample = st_residual)) +
 shapiro.test(bloodvessel_ACh_long$st_residual)
 
 #Checking the distance of standardised residuals 
-cumulative_percent <- function(var, cut_off = 1.96){
-  ecdf_proportions <- abs(var) |>
+cumulative_percent = function(var, cut_off = 1.96){
+  ecdf_proportions = abs(var) |>
     ecdf()
   100*(1 - ecdf_proportions(cut_off))
 }
@@ -75,7 +75,7 @@ bloodvessel_ACh_long |>
 #Non-normality of standardised residuals, will have to transform them to resolve.
 
 #Square root transformation
-bloodvessel_ACh_sqrt <- bloodvessel_ACh_long |>
+bloodvessel_ACh_sqrt = bloodvessel_ACh_long |>
   mutate(sqrt_Diameter = sqrt(Diameter))
 
 #Fit repeated measures ANOVA on transformed data
@@ -85,7 +85,7 @@ model_parameters(bloodvessel_ACh_sqrt_afx, es_type = "omega") |>
   display(use_symbols = TRUE)
 
 #Standardising new residuals
-bloodvessel_ACh_sqrt <- bloodvessel_ACh_sqrt |>
+bloodvessel_ACh_sqrt = bloodvessel_ACh_sqrt |>
   mutate(st_residual = (residuals(bloodvessel_ACh_sqrt_afx) - mean(residuals(bloodvessel_ACh_sqrt_afx)))/sd(residuals(bloodvessel_ACh_sqrt_afx)))
 
 #Checking normality of standardised residuals
@@ -118,7 +118,7 @@ bloodvessel_ACh_sqrt |>
 #Sqrt transformation did not resolve non-normality issue
 
 #Log transformation
-bloodvessel_ACh_log <- bloodvessel_ACh_long |>
+bloodvessel_ACh_log = bloodvessel_ACh_long |>
   mutate(log_Diameter = log(Diameter))
 
 #Fit repeated measures ANOVA on log transformed data
@@ -128,7 +128,7 @@ model_parameters(bloodvessel_ACh_log_afx, es_type = "omega") |>
   display(use_symbols = TRUE)
 
 #Standardising residuals
-bloodvessel_ACh_log <- bloodvessel_ACh_log |>
+bloodvessel_ACh_log = bloodvessel_ACh_log |>
   mutate(st_residual = (residuals(bloodvessel_ACh_log_afx) - mean(residuals(bloodvessel_ACh_log_afx)))/sd(residuals(bloodvessel_ACh_log_afx)))
 
 #Q-Q plot
@@ -148,7 +148,7 @@ model_parameters(bloodvessel_ACh_mixed_afx, es_type = "omega") |>
   display(use_symbols = TRUE)
 
 #Standardising residuals
-bloodvessel_ACh_log <- bloodvessel_ACh_log |>
+bloodvessel_ACh_log = bloodvessel_ACh_log |>
   mutate(st_residual = (residuals(bloodvessel_ACh_mixed_afx) - mean(residuals(bloodvessel_ACh_mixed_afx)))/sd(residuals(bloodvessel_ACh_mixed_afx)))
 
 #Q-Q plot
