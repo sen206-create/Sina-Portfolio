@@ -81,8 +81,6 @@ The robust ANOVA also found significant effects of sex (p = .00015) and the sex 
 
 [View the R script](RepeatedANOVA.R)
 
-## Section 5: Repeated Measures ANOVA
-
 ### <ins>**In this section, I analysed the data to consider whether sex affects the responses to acetylcholine and toxin administration, and whether the results support an internal or external site involved in acetylcholine-induced relaxation of the artery.**</ins>
 
 Blood vessel diameter differed between treatments, but there was no evidence that these responses depended on sex. A mixed two-way ANOVA on log-transformed diameter showed a significant effect of treatment, F(2.24, 29.11) = 31.69, p < .001. Neither the main effect of sex, F(1, 13) = 0.04, p = .844, nor the sex × treatment interaction, F(2.24, 29.11) = 0.68, p = .528, was significant. Greenhouse–Geisser corrections were applied because Mauchly’s test indicated a violation of sphericity (p < .001).
