@@ -77,4 +77,18 @@ The robust ANOVA also found significant effects of sex (p = .00015) and the sex 
 
 ![](Figures/interactionplot.png)
 
-**Section 5-6 coming as the class progresses.** Topics and code will be added here—check back to follow the project.
+## Sections 5: Repeated Measures ANOVA
+
+[View the R script](RepeatedANOVA.R)
+
+### <ins>**In this section:**</ins>
+
+- I analysed the data to consider whether there is any evidence for an effect of sex on the action of acetylcholine or on the effects of the toxin administration. 
+- I considered whether acetylcholine has a relaxing effect inside or outside the artery.
+
+
+
+![](Figures/interactionplot.png)
+
+
+**Section 6-7 coming as the class progresses.** Topics and code will be added here—check back to follow the project.
