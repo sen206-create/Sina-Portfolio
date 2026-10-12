@@ -97,5 +97,21 @@ These results provide no evidence that the pattern of responses to ACh and toxin
 
 ![](Figures/Section5.png)
 
+## Sections 6: Nonlinear Regression
 
-**Section 6-7 coming as the class progresses.** Topics and code will be added here—check back to follow the project.
+[View the R script](nlr.R)
+
+### <ins>In this section, I analysed the data to consider whether puromycin affects the maximum reaction rate of galactosyltransferase.</ins>
+Separate Michaelis–Menten models were fitted to the treated and untreated data using nonlinear regression. These estimated the maximum reaction rate (Vmax) and the substrate concentration at half the maximum rate (Km). Shapiro–Wilk tests showed no evidence of departures from normality in the residuals for either condition (treated: p = .413; untreated: p = .509).
+
+The model estimates showed that:
+- Vmax was 215.4 counts/min/min (SE = 4.74) in the treated condition and 165.6 counts/min/min (SE = 4.82) in the untreated condition.
+- Km was 0.0697 ppm (SE = 0.0059) in the treated condition and 0.0588 ppm (SE = 0.0064) in the untreated condition.
+- The estimated maximum reaction rate was approximately 30% higher in the treated condition.
+  
+These results suggest that puromycin treatment was associated with a higher maximum reaction rate, rather than the expected reduction. However, a direct statistical comparison between conditions was not included in this analysis. The treatment labels should therefore be checked before concluding how puromycin affects enzyme activity.
+
+![](Figures/nlr2.png)
+
+**Section 7 coming as the class progresses.** Topics and code will be added here—check back to follow the project.
+
