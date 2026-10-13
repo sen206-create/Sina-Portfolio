@@ -113,5 +113,20 @@ These results suggest that puromycin treatment was associated with a higher maxi
 
 ![](Figures/nlr2.png)
 
-**Section 7 coming as the class progresses.** Topics and code will be added here—check back to follow the project.
+## Section 7: Categorical Data Analysis
 
+[View the R script](Section7.R)
+
+### <ins>In this section, I analysed whether arthritis treatment was associated with improvement, and whether this differed between males and females, without accounting for age.</ins>
+
+A log-linear analysis was carried out on data from 84 patients. There was no evidence that the association between treatment and outcome differed by sex, χ²(1) = 0.28, p = .598.
+The analysis showed that:
+- Treatment was associated with outcome, χ²(1) = 13.53, p < .001.
+- Sex was also associated with outcome, χ²(1) = 7.27, p = .007.
+- The treatment × sex interaction was not significant (p = .069) and was removed from the final model.
+
+Improvement occurred in 77.8% of treated females compared with 40.6% receiving placebo, and in 50.0% of treated males compared with 9.1% receiving placebo. Fisher’s exact test was used for the separate male comparison because some expected counts were below five, giving p = .042.
+
+These results suggest that treatment was associated with greater improvement. Females had higher improvement rates overall, but there was no evidence that the association between treatment and improvement differed between sexes.
+
+![](Figures/Section7.png)
