@@ -22,7 +22,7 @@ The [project file](Projects/PD_EEG_FIRST.md) includes descriptions of the coding
 <p align="center">· · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · ·</p>
 <div align="left">
 
- ### Statistics Course (part of the Concepts and Skills unit), University of Bristo
+ ### Statistics Course (part of the Concepts and Skills unit), University of Bristol
  
 This is from a final-year course on statistic and R coding.
 
