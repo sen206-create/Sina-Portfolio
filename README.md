@@ -22,11 +22,11 @@ The [project file](Projects/PD_EEG_FIRST.md) includes descriptions of the coding
 <p align="center">· · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · ·</p>
 <div align="left">
 
- ### Statistics Course (part of the Concepts and Skills unit), University of Bristol (WORK IN PROGRESS)
+ ### Statistics Course (part of the Concepts and Skills unit), University of Bristo
  
 This is from a final-year course on statistic and R coding.
 
-Here I use statistical and coding knowledge learnt in lectrues to analyse a dataset about IQ.
+Here I use statistical and coding knowledge learnt in lectures to analyse a several different datasets/
 
 The [project file](Projects/Concepts_Skills.md) includes the code and relevant descriptions.
 
