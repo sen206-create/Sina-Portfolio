@@ -95,9 +95,9 @@ control_pred_data = data.frame(Substrate_concentration = seq(0.02, 1.1, length.o
 predicted_density = predict(control_model, control_pred_data)
 control_pred_data = mutate(control_pred_data, Reaction_rate = predicted_density)
 
-treated_pred_data <- data.frame(Substrate_concentration = seq(0.02, 1.1, length.out = 1000))
-treated_predicted <- predict(inhibition_model, treated_pred_data)
-treated_pred_data <- mutate(treated_pred_data, Reaction_rate = treated_predicted)
+treated_pred_data = data.frame(Substrate_concentration = seq(0.02, 1.1, length.out = 1000))
+treated_predicted = predict(inhibition_model, treated_pred_data)
+treated_pred_data = mutate(treated_pred_data, Reaction_rate = treated_predicted)
 
 ggplot() +
   geom_point(data = inhibition, aes(x = Substrate_concentration, y = Reaction_rate), colour = "blue") +
