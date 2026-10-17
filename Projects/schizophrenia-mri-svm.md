@@ -25,11 +25,11 @@ I used T1 structural MRI scans from [UCLA's Consortium for Neuropsychiatric Phen
 
 I processed the scans using CAT within SPM, producing modulated grey matter maps in a common space. I checked segmentation reports and alignment, reviewed unusual scans and collected the CAT quality ratings. I retained all 175 participants, keeping the quality and artifact flags for later analysis.
 
-![](Projects/Figures/MRI_SVM/cat_segmentation.png)
+![](Figures/MRI_SVM/cat_segmentation.png)
 
 This pilot report shows the original T1 views on the left and the segmentation on the right. Its weighted quality score was 65.43%, grade D. I have included it as an example of why I inspected the outputs rather than treating successful processing as a quality pass. The report header containing local file paths has been cropped out.
 
-![Distribution of CAT quality scores across the 171 scans in the main processing batch](Projects/Figures/MRI_SVM/quality_distribution.png)
+![](Figures/MRI_SVM/quality_distribution.png)
 
 The distribution covers the 171 scans in the main batch. The four separately processed pilots are not included in this plot. These scores describe image and preprocessing quality, not classification performance.
 
@@ -43,7 +43,7 @@ One useful lesson came from the fitting process. The first implementation produc
 
 ## What the model found
 
-![Confusion matrix showing 108 controls and 16 participants with schizophrenia correctly classified](Projects/Figures/MRI_SVM/confusion_matrix.png)
+![](Figures/MRI_SVM/confusion_matrix.png)
 
 | Measure | Result |
 | --- | ---: |
@@ -56,13 +56,13 @@ The model identified controls more successfully than participants with schizophr
 
 I also shuffled the labels 1,000 times and repeated the training and evaluation. I ran a second test that restricted shuffling within fold, scanner and ghosting groups.
 
-![Permutation distribution with the observed balanced accuracy marked by a red line](Projects/Figures/MRI_SVM/permutation_test.png)
+![](Figures/MRI_SVM/permutation_test.png)
 
 This is the second test. The red line marks the observed 59.2% balanced accuracy. Both tests gave p ≈ 0.034 after Holm correction for the two comparisons. This supports some discrimination under these testing assumptions, but does not establish clinical usefulness or show that the model learned only disease-related anatomy.
 
 ## Checking what might influence the result
 
-![Balanced accuracy of the MRI model, metadata model and retrained sensitivity analyses](Projects/Figures/MRI_SVM/balanced_accuracy.png)
+![](Figures/MRI_SVM/balanced_accuracy.png)
 
 A logistic regression using age, gender, scanner and the ghosting flag reached 68.2% balanced accuracy, higher than the MRI model's 59.2%. When I excluded scans flagged for ghosting and retrained, MRI balanced accuracy was 52.0%. Training on one scanner and testing on the other gave 54.0% and 55.3%.
 
