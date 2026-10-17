@@ -13,14 +13,14 @@ I am a final-year BSc Neuroscience student at the University of Bristol. Recentl
 
 ## My Projects (Descending Chronological Order)
 
-<p align="center">· · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · ·</p>
-<div align="left">
- 
 ### Exploring Schizophrenia Classification with Structural MRI and Support Vector Machines
 
 After working on MRI preprocessing, I wanted to incorporate machine learning into my MRI processing skillset. Inspired by a study on predicting the course of psychosis (Mourao-Miranda et al., 2011), I used UCL's SPM and CAT softwares to process structural MRI scans from 175 participants, then trained a support vector machine to distinguish schizophrenia from controls.I also investigated how scan quality and scanner differences affected the results, and whether MRI performed better than a model using basic participant and scan information.
 
 The [project file](Projects/schizophrenia-mri-svm.md) includes the workflow, figures, results and R scripts.
+
+<p align="center">· · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · ·</p>
+<div align="left">
 
 ### EEG Processor (WORK IN PROGRESS)
  
