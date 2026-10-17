@@ -12,6 +12,9 @@ I am a final-year BSc Neuroscience student at the University of Bristol. Recentl
 <div align="left">
 
 ## My Projects (Descending Chronological Order)
+
+<p align="center">· · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · ·</p>
+<div align="left">
  
 ### Exploring Schizophrenia Classification with Structural MRI and Support Vector Machines
 
