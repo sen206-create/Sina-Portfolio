@@ -6,7 +6,7 @@
 
  ## About Me
 
-I am a final-year BSc Neuroscience student. Recently I have cultivated an interest in computational neuroscience and I am learning how to use Python and R to analyse neural data, construct computational models, and to understand the process of machine learning through the below listed projects.
+I am a final-year BSc Neuroscience student at the University of Bristol. Recently I have cultivated an interest in computational neuroscience and I am learning how to use Python and R to analyse neural data, construct computational models, and to understand the process of machine learning through the below listed projects.
 <div align="center">
 
 <div align="left">
