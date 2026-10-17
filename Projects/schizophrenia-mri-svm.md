@@ -4,7 +4,9 @@
 
 After working on EEG and MRI preprocessing, I wanted to learn how to take brain images through to a machine learning analysis. I was interested in [Mourao-Miranda and colleagues' study](https://pmc.ncbi.nlm.nih.gov/articles/PMC3315786/), which used structural MRI and support vector machines to predict the course of psychosis.
 
-I used that paper as a starting point for learning the approach. My question was different: could a model distinguish participants with schizophrenia from controls in an open MRI dataset? This gave me a chance to learn more about SPM, CAT and the decisions involved in evaluating a classifier.
+I used that paper as a starting point for learning the approach. My question was different: **could a model distinguish participants with schizophrenia from controls in an open MRI dataset?** 
+
+This gave me a chance to learn more about SPM, CAT and the decisions involved in evaluating a classifier.
 
 [View the R scripts and running instructions](MRI_SVM/README.md)
 
