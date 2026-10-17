@@ -25,7 +25,7 @@ I used T1 structural MRI scans from [UCLA's Consortium for Neuropsychiatric Phen
 
 I processed the scans using CAT within SPM, producing modulated grey matter maps in a common space. I checked segmentation reports and alignment, reviewed unusual scans and collected the CAT quality ratings. I retained all 175 participants, keeping the quality and artifact flags for later analysis.
 
-![Original T1 views and tissue segmentation from a CAT report, with its quality ratings](Projects/Figures/MRI_SVM/cat_segmentation.png)
+![Original T1 views and tissue segmentation from a CAT report, with its quality ratings](MRI_SVM/cat_segmentation.png)
 
 This pilot report shows the original T1 views on the left and the segmentation on the right. Its weighted quality score was 65.43%, grade D. I have included it as an example of why I inspected the outputs rather than treating successful processing as a quality pass. The report header containing local file paths has been cropped out.
 
