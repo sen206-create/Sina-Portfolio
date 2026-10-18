@@ -57,6 +57,7 @@ for (f in 1:5) {
   models[[f]] = list(training_rows=tr,test_rows=te,alpha=alpha,beta=beta,
     intercept=intercept,C=C,solver_iterations=fit$iterations)
 }
+
 stopifnot(!anyNA(pred))
 metric = function(truth,guess) {
   sensitivity = mean(guess[truth=='SCHZ']=='SCHZ')
@@ -64,12 +65,14 @@ metric = function(truth,guess) {
   data.frame(accuracy=mean(truth==guess),sensitivity=sensitivity,
     specificity=specificity,balanced_accuracy=(sensitivity+specificity)/2)
 }
+
 summary = rbind(cbind(model='Linear SVM C=1 (QP)',metric(p$diagnosis,pred)),
   cbind(model='Always CONTROL',metric(p$diagnosis,rep('CONTROL',175))))
 fold_metrics = do.call(rbind,lapply(1:5,function(f) {
   i = p$fold==f
   cbind(fold=f,metric(p$diagnosis[i],pred[i]))
 }))
+
 out = file.path(base,paste0('linear_svm_C1_QP_',format(Sys.time(),'%Y%m%d_%H%M%S')))
 if (dir.exists(out)) stop('Output already exists; retry in a second.')
 dir.create(out,recursive=TRUE)
@@ -81,6 +84,7 @@ write.csv(summary,file.path(out,'summary_metrics.csv'),row.names=FALSE)
 write.csv(fold_metrics,file.path(out,'fold_metrics.csv'),row.names=FALSE)
 write.csv(do.call(rbind,diagnostics),file.path(out,'optimisation_diagnostics.csv'),row.names=FALSE)
 saveRDS(models,file.path(out,'fold_models_qp.rds'))
+
 writeLines(c('Corrective alternative solver for the same unscaled raw-kernel C=1 objective.',
   'Same subjects, labels and folds as the first run; no class weights or tuning.',
   'Uses saved folds directly; earlier failed fits are not inputs.',
@@ -89,6 +93,7 @@ writeLines(c('Corrective alternative solver for the same unscaled raw-kernel C=1
   'No external validation; permutation, uncertainty and confound analyses pending.',
   'QP model objects have a different format from kernlab objects.',
   paste('quadprog version:',packageVersion('quadprog'))),file.path(out,'methods.txt'))
+
 writeLines(capture.output(sessionInfo()),file.path(out,'session_info.txt'))
 cat('\nAll five optimisation checks passed.\n')
 print(table(Actual=p$diagnosis,Predicted=factor(pred,levels=c('CONTROL','SCHZ'))))
