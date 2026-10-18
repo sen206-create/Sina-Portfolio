@@ -3,10 +3,6 @@ project = Sys.getenv("UCLA_MRI_PROJECT", unset = path.expand("~/ucla-mri-r"))
 feature_dir = file.path(project, "feature-prep", "gm_1p5mm_fwhm8")
 output_file = file.path(feature_dir, "linear_kernel_raw.rds")
 
-if (file.exists(output_file)) {
-  stop("Kernel already exists. Proceed to script 16.")
-}
-
 build_kernel = function() {
   feature_data = hdf5r::H5File$new(
     file.path(feature_dir, "gm_features.mat"),
