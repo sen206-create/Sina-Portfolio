@@ -1,13 +1,8 @@
+library(hd5fr)
 #Setting up the feature file
 project = Sys.getenv("UCLA_MRI_PROJECT", unset = path.expand("~/ucla-mri-r"))
 feature_dir = file.path(project, "feature-prep", "gm_1p5mm_fwhm8")
 output_file = file.path(feature_dir, "linear_kernel_raw.rds")
-if (file.exists(output_file)) {
-  stop("Kernel already exists. Keep it and proceed to script 16; no rerun needed.")
-}
-if (!requireNamespace("hdf5r", quietly = TRUE)) {
-  stop("Install hdf5r with install.packages('hdf5r'), then rerun.")
-}
 
 #Reading the voxel features in blocks to limit memory use
 build_kernel = function() {
