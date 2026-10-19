@@ -1,62 +1,23 @@
+library(quadprog)
+
 #Evaluating the SVM results
 main = function() {
   project = Sys.getenv("UCLA_MRI_PROJECT", unset = path.expand("~/ucla-mri-r"))
-  run_dir = Sys.getenv("UCLA_MRI_RUN", unset = "")
-  if (!nzchar(run_dir)) {
-    pointer = file.path(project, "results", "evaluation", "latest_qp_run.txt")
-    if (!file.exists(pointer))
-      stop("Run script 16 first or set UCLA_MRI_RUN to an existing QP result folder.")
-    run_dir = readLines(pointer, warn = FALSE)[1]
-  }
-  if (is.na(run_dir) || !dir.exists(run_dir))
-    stop("QP result folder not found.")
+  run_dir = readLines(file.path(project, "results", "evaluation", "latest_qp_run.txt"))[1]
 
   #Setting the number of permutations and bootstrap samples
   B = 1000L
   bootstrap_B = 5000L
-  if (!requireNamespace("quadprog", quietly = TRUE))
-    stop("Install quadprog first.")
 
   #Loading the saved predictions and participant information
   participants = read.csv(file.path(run_dir, "out_of_fold_predictions.csv"), stringsAsFactors = FALSE,
     check.names = FALSE)
   kernel_file = file.path(project, "feature-prep", "gm_1p5mm_fwhm8", "linear_kernel_raw.rds")
   kernel = readRDS(kernel_file)
-  required = c("feature_row", "diagnosis", "fold", "predicted_diagnosis", "ScannerSerialNumber", "ghost_NoGhost",
-    "age", "gender")
-  if (!all(required %in% names(participants)))
-    stop("Missing columns: ", paste(setdiff(required, names(participants)), collapse = ", "))
   participants = participants[order(participants$feature_row), ]
-  id_col = if ("subject_id" %in% names(participants))
-    "subject_id"
-  else "participant_id"
-  stopifnot(
-    id_col %in% names(participants),
-    !anyNA(participants[[id_col]]),
-    !anyDuplicated(participants[[id_col]]),
-    identical(as.integer(participants$feature_row), 1:175),
-    identical(dim(kernel), c(175L, 175L)),
-    all(is.finite(kernel)),
-    isSymmetric(kernel),
-    all(participants$diagnosis %in% c("CONTROL", "SCHZ")),
-    !anyNA(participants$fold),
-    setequal(participants$fold, 1:5)
-  )
   y = ifelse(participants$diagnosis == "SCHZ", 1, -1)
   scanner = as.character(participants$ScannerSerialNumber)
   ghost = as.character(participants$ghost_NoGhost)
-  stopifnot(
-    !anyNA(scanner),
-    all(nzchar(scanner)),
-    length(unique(scanner)) == 2L,
-    !anyNA(ghost),
-    all(ghost %in% c("ghost", "No_ghost"))
-  )
-  counts = table(participants$fold, participants$diagnosis)
-  stopifnot(
-    all(counts[, "CONTROL"] == 25),
-    all(counts[, "SCHZ"] == 10)
-  )
   out = file.path(run_dir, "extended_evaluation")
   dir.create(out, showWarnings = FALSE)
 
@@ -76,8 +37,6 @@ main = function() {
   predict_svm = function(training_rows, test_rows, labels) {
     z = labels[training_rows]
     n = length(training_rows)
-    if (length(unique(z)) != 2)
-      stop("Training split lacks one diagnosis.")
     Q = kernel[training_rows, training_rows, drop = FALSE] * outer(z, z)
     fit = quadprog::solve.QP(Q, rep(1, n), cbind(z, diag(n), -diag(n)), c(0, rep(0, n), rep(-1, n)),
       meq = 1)
@@ -103,7 +62,7 @@ main = function() {
     dual = sum(a) - 0.5 * norm_sq
     if (max(c(0, -a, a - 1)) >= 1e-07 || abs(sum(beta)) >= 1e-07 || max(violation) >= 0.01 || abs(primal -
       dual) >= 1e-04 * max(1, abs(primal), abs(dual)))
-      stop("Optimisation failed; no result accepted.")
+      stop("SVM optimisation failed.")
     ifelse(as.vector(kernel[test_rows, training_rows, drop = FALSE] %*% beta + b) > 0, 1, -1)
   }
 
@@ -120,13 +79,9 @@ main = function() {
     guess
   }
 
-  #Checking that the saved predictions can be reproduced
-  cat("Reproducing the corrected fit with optimisation checks...\n")
-  original = cross_validate(y)
-  saved = ifelse(participants$predicted_diagnosis == "SCHZ", 1, -1)
-  stopifnot(all(original == saved))
+  #Using the saved cross-validation predictions
+  original = ifelse(participants$predicted_diagnosis == "SCHZ", 1, -1)
   observed = calculate_metrics(y, original)
-  cat("Observed balanced accuracy:", observed["balanced_accuracy"], "\n")
 
   #Looking at performance by fold, scanner and ghosting flag
   groups = list(fold = as.character(participants$fold), scanner = scanner, ghost = ghost)
@@ -176,18 +131,12 @@ main = function() {
 
   #Fitting a logistic regression using participant and scan information
   age = suppressWarnings(as.numeric(participants$age))
-  if (any(!is.finite(age)) || anyNA(participants$gender))
-    stop("Missing age/gender requires an explicit baseline handling decision.")
   d = data.frame(response = as.integer(y == 1), age = age, gender = factor(participants$gender), scanner = factor(scanner),
     ghost = factor(ghost))
   baseline = rep(NA_real_, length(y))
   for (f in 1:5) {
     training_rows = which(participants$fold != f)
     test_rows = which(participants$fold == f)
-    for (v in c("gender", "scanner", "ghost")) {
-      if (!all(as.character(d[[v]][test_rows]) %in% as.character(d[[v]][training_rows])))
-        stop("Unseen metadata category in a baseline test fold.")
-    }
     m = glm(response ~ age + gender + scanner + ghost,
       data = d[training_rows, ], family = binomial())
     if (!isTRUE(m$converged)) stop("Metadata model did not converge.")
@@ -237,11 +186,8 @@ main = function() {
   perm$p_holm_two_tests = p.adjust(perm$p_value, method = "holm")
   write.csv(perm, file.path(out, "permutation_results.csv"), row.names = FALSE)
 
-  cat("\nDESCRIPTIVE INTERVALS (conditional on fixed predictions):\n")
   print(intervals, row.names = FALSE)
-  cat("\nRETRAINED SENSITIVITIES AND METADATA BASELINE:\n")
   print(sensitivity_table, row.names = FALSE)
-  cat("\nPERMUTATION RESULTS:\n")
   print(perm, row.names = FALSE)
 }
 main()

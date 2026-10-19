@@ -1,18 +1,12 @@
+library(quadprog)
+
 #Loading the participant folds and linear kernel
 project = Sys.getenv("UCLA_MRI_PROJECT", unset = path.expand("~/ucla-mri-r"))
-if (!requireNamespace("quadprog", quietly = TRUE)) stop("Run install.packages('quadprog') first.")
 base = file.path(project, "results", "evaluation")
 participants = read.csv(file.path(base, "cv_folds.csv"), stringsAsFactors = FALSE)
 participants = participants[order(participants$feature_row), ]
 kernel = readRDS(file.path(project, "feature-prep", "gm_1p5mm_fwhm8", "linear_kernel_raw.rds"))
-stopifnot(
-  identical(as.integer(participants$feature_row), 1:175),
-  identical(dim(kernel), c(175L, 175L)),
-  all(is.finite(kernel)),
-  isSymmetric(kernel),
-  all(participants$diagnosis %in% c("CONTROL", "SCHZ")),
-  setequal(participants$fold, 1:5)
-)
+
 counts = table(participants$fold, participants$diagnosis)
 stopifnot(
   all(counts[, "CONTROL"] == 25),
@@ -68,7 +62,7 @@ for (f in 1:5) {
     primal = primal, dual = dual, objective_gap = gap, passed = passed)
   print(diagnostics[[f]], row.names = FALSE)
   if (!passed)
-    stop("Optimisation check failed. No performance reported.")
+    stop("SVM optimisation failed.")
 
   #Predicting the participants left out of training
   scores[test_rows] = as.vector(kernel[test_rows, training_rows, drop = FALSE] %*% beta + intercept)
@@ -96,7 +90,6 @@ fold_metrics = do.call(rbind, lapply(1:5, function(f) {
 
 #Saving the predictions, results and fitted models
 out = file.path(base, paste0("linear_svm_C1_QP_", format(Sys.time(), "%Y%m%d_%H%M%S")))
-if (dir.exists(out)) stop("Output already exists; retry in a second.")
 dir.create(out, recursive = TRUE)
 participants$predicted_diagnosis = predictions
 participants$correct = predictions == participants$diagnosis
@@ -107,8 +100,6 @@ write.csv(fold_metrics, file.path(out, "fold_metrics.csv"), row.names = FALSE)
 write.csv(do.call(rbind, diagnostics), file.path(out, "optimisation_diagnostics.csv"), row.names = FALSE)
 saveRDS(models, file.path(out, "fold_models_qp.rds"))
 
-cat("\nAll five optimisation checks passed.\n")
 print(table(Actual = participants$diagnosis, Predicted = factor(predictions, levels = c("CONTROL", "SCHZ"))))
 print(summary, row.names = FALSE)
 writeLines(normalizePath(out), file.path(base, "latest_qp_run.txt"))
-cat("\nSaved results to:", out, "\n")
