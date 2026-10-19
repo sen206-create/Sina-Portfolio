@@ -5,7 +5,7 @@ participants = read.csv(file.path(feature_dir, "feature_participants.csv"), stri
 
 stopifnot(all(c("participant_id", "diagnosis", "feature_row") %in% names(participants)))
 stopifnot(
-  nrow(participants) == 175L,
+  nrow(participants) == 175,
   !anyNA(participants$participant_id),
   !anyDuplicated(participants$participant_id),
   !anyNA(participants$diagnosis),
@@ -18,7 +18,7 @@ stopifnot(
   sum(participants$diagnosis == "SCHZ") == 50L
 )
 
-seed = 20261017L
+seed = 20261017
 RNGkind("Mersenne-Twister", "Inversion", "Rejection")
 set.seed(seed)
 participants$fold = NA_integer_
