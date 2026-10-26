@@ -1,0 +1,2 @@
+Participants,PD N,Control N,Mean fold balanced accuracy (permutation statistic),Pooled held-out balanced accuracy,Mean fold ROC AUC,Pooled held-out ROC AUC,PD sensitivity,Control specificity,Permutation p-value,Permutations,Null mean balanced accuracy,Seed
+149,100,49,0.6805555555555556,0.6829591836734694,0.76,0.7395918367346939,0.57,0.7959183673469388,0.000999000999000999,1000,0.5025516666666667,42

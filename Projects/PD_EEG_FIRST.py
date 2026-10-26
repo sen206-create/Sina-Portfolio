@@ -1,14 +1,31 @@
+from pathlib import Path
+
 import mne
 import numpy as np
 import pandas as pd
-from pathlib import Path
+from autoreject import AutoReject
 from mne.preprocessing import ICA
 from mne_icalabel import label_components
 from pyprep import NoisyChannels
-from autoreject import AutoReject
 
 
-def preprocess_epoch_present(raw, subject_id):
+DATA_DIR = Path("/Users/sinaenayati/Desktop/v1")
+OUTPUT_DIR = Path(__file__).resolve().parent / "preprocessed_eeg"
+
+
+def missing_channel_positions(raw):
+    eeg_picks = mne.pick_types(raw.info, eeg=True, exclude=[])
+    if len(eeg_picks) == 0:
+        raise ValueError("No EEG channels found.")
+    missing = []
+    for pick in eeg_picks:
+        position = raw.info["chs"][pick]["loc"][:3]
+        if not np.isfinite(position).all() or np.all(position == 0):
+            missing.append(raw.ch_names[pick])
+    return missing
+
+
+def preprocess_eeg(raw):
     detector = NoisyChannels(
         raw.copy(),
         random_state=42
@@ -63,163 +80,94 @@ def preprocess_epoch_present(raw, subject_id):
 
     epochs = mne.make_fixed_length_epochs(
         raw_clean,
-        duration=2,
+        duration=4,
         overlap=0,
         preload=True
     )
     ar = AutoReject(random_state=42)
     epochs_clean, reject_log = ar.fit_transform(epochs, return_log=True)
+    epochs_clean.set_eeg_reference("average", projection=False)
 
-    inter_rates = np.mean(reject_log.labels == 2, axis=0)
+    if len(epochs_clean) == 0:
+        raise ValueError("No clean epochs remaining.")
 
-    frequent_channels = [
-        f"{name}:{rate:.1%}"
-        for name, rate in zip(reject_log.ch_names, inter_rates)
-        if rate > 0.50
-    ]
+    return epochs_clean
 
-    # PARAMETERS FOR SPREADSHEET
-    n_eeg = len(raw_marked.ch_names)
-    bad_eeg = raw_marked.info["bads"].copy()
-    removed_components_fraction = len(exclude_idx) / ica.n_components_
-    retained_epochs_fraction = len(epochs_clean) / len(epochs)
-    retained_seconds = len(epochs_clean) * 2
 
-    review_reasons = []
-
-    if (len(bad_eeg)/n_eeg) > 0.20:
-        review_reasons.append(f"More than 20% of EEG channels marked bad")
-
-    if removed_components_fraction > 0.30:
-        review_reasons.append(f"More than 30% of ICA components removed")
-
-    if frequent_channels:
-        review_reasons.append("Channels interpolated in over 50% of epochs")
-
-    if retained_seconds < 60:
-        review_reasons.append("Less than 60 seconds retained")
-
-    if ica.n_iter_ >= ica.max_iter:
-        review_reasons.append("ICA reached its iteration limit")
-
-    qc = {
-        "Subject": subject_id,
-        "Status": "Completed",
-        "Bad channels": (
-            f"{len(bad_eeg)}: {', '.join(bad_eeg)}"
-            if bad_eeg else "0"
-        ),
-        "ICA components removed": (
-            f"{len(exclude_idx)}/{ica.n_components_} "
-            f"({removed_components_fraction:.1%})"
-        ),
-        "Epochs retained": (
-            f"{len(epochs_clean)}/{len(epochs)} "
-            f"({retained_epochs_fraction:.1%})"
-        ),
-        "Retained duration": retained_seconds,
-        "Frequently interpolated channels": (
-            "; ".join(frequent_channels) or "None"
-        ),
-        "Review needed": "Yes" if review_reasons else "No",
-        "Review reasons": "; ".join(review_reasons) or "None",
+def main():
+    participants = pd.read_csv(DATA_DIR / "participants.tsv", sep="\t")
+    if participants["participant_id"].isna().any() or not participants["participant_id"].is_unique:
+        raise ValueError("Participant IDs must be present and unique.")
+    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+    records = []
+    retry_ids = {
+        f"sub-{number:03d}"
+        for number in range(1, 150)
     }
+    for subject_id in participants["participant_id"]:
+        if subject_id not in retry_ids:
+            continue
+        print(f"Processing {subject_id}...", flush=True)
+        record = {"Subject": subject_id, "Status": "Failed", "Reason": "",
+                  "Clean epochs": 0, "Retained seconds": 0, "File": ""}
+        try:
+            file_path = DATA_DIR / subject_id / "eeg" / \
+                f"{subject_id}_task-Rest_eeg.set"
+            raw = mne.io.read_raw_eeglab(file_path, preload=True)
+            extra_channels = [
+                name for name in raw.ch_names
+                if name.strip().casefold() in {"resp", "x", "y", "z"}
+            ]
 
-    return epochs_clean, ica, reject_log, qc
+            if extra_channels:
+                print(f"{subject_id}: omitting channels {extra_channels}")
+                raw.drop_channels(extra_channels)
+            # Rebuild position metadata after removing the extra channels.
+            # Preserve the remaining EEG coordinates and remove invalid leftover points.
+            positions = raw.get_montage().get_positions()
 
+            positions["ch_pos"] = {
+                raw.ch_names[pick]: raw.info["chs"][pick]["loc"][:3].copy()
+                for pick in mne.pick_types(raw.info, eeg=True, exclude=[])
+            }
 
-def save_qc_spreadsheet(all_qc, output_path):
-    columns = [
-        "Subject",
-        "Status",
-        "Bad channels",
-        "ICA components removed",
-        "Epochs retained",
-        "Retained duration",
-        "Frequently interpolated channels",
-        "Review needed",
-        "Review reasons",
-    ]
+            for key in ("hsp", "hpi"):
+                points = positions[key]
+                if points is not None:
+                    points = points[np.isfinite(points).all(axis=1)]
+                    positions[key] = points if len(points) else None
 
-    table = pd.DataFrame(all_qc, columns=columns)
+            raw.set_montage(mne.channels.make_dig_montage(**positions))
+            missing = missing_channel_positions(raw)
+            if missing:
+                record["Status"] = "Excluded"
+                record["Reason"] = "Missing EEG channel positions: " + \
+                    ", ".join(missing)
+                print(f"Excluded {subject_id}: {record['Reason']}", flush=True)
+            else:
+                epochs_clean = preprocess_eeg(raw)
+                output_path = OUTPUT_DIR / f"{subject_id}-epo.fif"
+                epochs_clean.save(output_path, overwrite=True)
+                record.update({
+                    "Status": "Saved",
+                    "Clean epochs": len(epochs_clean),
+                    "Retained seconds": len(epochs_clean) * 4,
+                    "File": str(output_path),
+                })
+                print(f"Saved {output_path}", flush=True)
+        except Exception as error:
+            record["Reason"] = f"{type(error).__name__}: {error}"
+            print(f"Failed {subject_id}: {record['Reason']}", flush=True)
 
-    output_path = Path(output_path)
-    output_path.parent.mkdir(parents=True, exist_ok=True)
+        records.append(record)
+        pd.DataFrame(records).to_csv(
+            OUTPUT_DIR / "processing_log.csv", index=False)
 
-    with pd.ExcelWriter(output_path, engine="openpyxl") as writer:
-        table.to_excel(
-            writer,
-            sheet_name="EEG quality control",
-            index=False,
-        )
-
-        sheet = writer.sheets["EEG quality control"]
-        sheet.freeze_panes = "C2"
-        sheet.auto_filter.ref = sheet.dimensions
-
-        from openpyxl.styles import Alignment, Font, PatternFill
-        from openpyxl.comments import Comment
-
-        # Formatting
-        for cell in sheet[1]:
-            cell.font = Font(bold=True, color="FFFFFF")
-            cell.fill = PatternFill("solid", fgColor="17365D")
-            cell.alignment = Alignment(wrap_text=True)
-
-        sheet.row_dimensions[1].height = 32
-        sheet["F1"].comment = Comment(
-            "Retained duration is measured in seconds.", "QC"
-        )
-
-        widths = {
-            "A": 14, "B": 14, "C": 45,
-            "D": 25, "E": 25, "F": 20,
-            "G": 55, "H": 18, "I": 65,
-        }
-
-        for column, width in widths.items():
-            sheet.column_dimensions[column].width = width
-
-        for row in sheet.iter_rows(min_row=2):
-            for cell in row:
-                cell.alignment = Alignment(
-                    vertical="top",
-                    wrap_text=True,
-                )
-
-            if row[7].value == "Yes":
-                row[7].fill = PatternFill(
-                    "solid", fgColor="FFF2CC"
-                )
-
-    print(f"Spreadsheet saved to: {output_path}")
+    counts = pd.DataFrame(records)["Status"].value_counts() if records else {}
+    print(f"Finished: {counts.get('Saved', 0)} saved, "
+          f"{counts.get('Excluded', 0)} excluded, {counts.get('Failed', 0)} failed.")
+    print(f"Output: {OUTPUT_DIR}")
 
 
-idx = [f"{number:03d}" for number in range(1, 2)]
-
-all_qc = []
-
-for index in idx:
-    subject_id = f"sub-{index}"
-
-    file_path = (
-        f"/Users/sinaenayati/Downloads/v1/"
-        f"{subject_id}/eeg/{subject_id}_task-Rest_eeg.set"
-    )
-
-    raw = mne.io.read_raw_eeglab(
-        file_path,
-        preload=True,
-    )
-
-    epochs_clean, ica, reject_log, qc = preprocess_epoch_present(
-        raw,
-        subject_id=subject_id,
-    )
-
-    all_qc.append(qc)
-
-    save_qc_spreadsheet(
-        all_qc,
-        "/Users/sinaenayati/Desktop/Project_Intern/EEG_quality_control.xlsx",
-    )
+if __name__ == "__main__":
+    main()
