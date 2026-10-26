@@ -2,7 +2,7 @@
 
 > Script for sections 1-2.
 
-[View the R script](IQ_analysis.R)
+[View the R script](Scripts/IQ_analysis.R)
 
 ## Section 1: Simple Linear Regression
 
@@ -42,7 +42,7 @@ The two-predictor model accounted for approximately **28.5% of the observed vari
 
 ## Sections 3: ANOVA and Planned Contrasts
 
-[View the R script](Oestrogen.R)
+[View the R script](Scripts/Oestrogen.R)
 
 The data set contained data on bone mineral density (BMD, measured in mg/cm2 ) from mice that were randomly allocated into six treatment groups that received different doses of oestrogen (or vehicle). Following one month of treatment, the mice were killed and the BMD measured for their left proximal tibia.
 
@@ -62,7 +62,7 @@ The data set contained data on bone mineral density (BMD, measured in mg/cm2 ) f
 
 ## Sections 4: Factorial ANOVA
 
-[View the R script](FactorialANOVA.R)
+[View the R script](Scripts/FactorialANOVA.R)
 
 ### <ins>**In this section, I analysed the data to consider whether resting heart rate differs between males and females and whether these sex differences are affected by mouse strain.**</ins>
 
@@ -79,7 +79,7 @@ The robust ANOVA also found significant effects of sex (p = .00015) and the sex 
 
 ## Sections 5: Repeated Measures ANOVA
 
-[View the R script](RepeatedANOVA.R)
+[View the R script](Scripts/RepeatedANOVA.R)
 
 ### <ins>**In this section, I analysed the data to consider whether sex affects the responses to acetylcholine and toxin administration, and whether the results support an internal or external site involved in acetylcholine-induced relaxation of the artery.**</ins>
 
@@ -99,7 +99,7 @@ These results provide no evidence that the pattern of responses to ACh and toxin
 
 ## Sections 6: Nonlinear Regression
 
-[View the R script](nlr.R)
+[View the R script](Scripts/nlr.R)
 
 ### <ins>In this section, I analysed the data to consider whether puromycin affects the maximum reaction rate of galactosyltransferase.</ins>
 Separate Michaelis–Menten models were fitted to the treated and untreated data using nonlinear regression. These estimated the maximum reaction rate (Vmax) and the substrate concentration at half the maximum rate (Km). Shapiro–Wilk tests showed no evidence of departures from normality in the residuals for either condition (treated: p = .413; untreated: p = .509).
@@ -115,7 +115,7 @@ These results suggest that puromycin treatment was associated with a higher maxi
 
 ## Section 7: Categorical Data Analysis
 
-[View the R script](Section7.R)
+[View the R script](Scripts/Section7.R)
 
 ### <ins>In this section, I analysed whether arthritis treatment was associated with improvement, and whether this differed between males and females, without accounting for age.</ins>
 

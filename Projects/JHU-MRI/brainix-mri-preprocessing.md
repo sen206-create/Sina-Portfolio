@@ -39,7 +39,7 @@ flowchart TD
     G --> H[Inspect and save brain-extracted images]
 ```
 ---
-![](Figures/T2comparison.png)
+![](T2comparison.png)
 
 ---
 ## What I Practised

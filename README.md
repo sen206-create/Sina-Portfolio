@@ -37,7 +37,7 @@ This is from a final-year course on statistic and R coding.
 
 Here I use statistical and coding knowledge learnt in lectures to analyse a several different datasets/
 
-The [project file](Projects/Concepts_Skills.md) includes the code and relevant descriptions.
+The [project file](Projects/STATS/Concepts_Skills.md) includes the code and relevant descriptions.
 
 <p align="center">· · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · ·</p>
 <div align="left">
@@ -48,7 +48,7 @@ This was from the final course in a 4-course specialisation 'Neuroscience and Ne
 
 Here I use the ANTs R package to create a MRI preprocessing pipeline that converted T1, T2 and FLAIR DICOM scans to NIfTI, performed N4 bias correction, T1 brain extraction, rigid multimodal registration, mask application and visual quality control to produce aligned brain-only outputs. 
 
-The [project file](Projects/brainix-mri-preprocessing.md) includes descriptions of the coding project.
+The [project file](Projects/JHU-MRI/brainix-mri-preprocessing.md) includes descriptions of the coding project.
 
 <p align="center">· · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · ·</p>
 <div align="left">
