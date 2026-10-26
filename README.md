@@ -17,7 +17,7 @@ I am a final-year BSc Neuroscience student at the University of Bristol. Recentl
 
 After working on MRI preprocessing, I wanted to incorporate machine learning into my MRI processing skillset. Inspired by a study on predicting the course of psychosis (Mourao-Miranda et al., 2011), I used SPM and CAT softwares to process structural MRI scans from 175 participants, then trained a support vector machine to distinguish schizophrenia from controls.I also investigated how scan quality and scanner differences affected the results, and whether MRI performed better than a model using basic participant and scan information.
 
-The [project file](Projects/schizophrenia-mri-svm.md) includes the workflow, figures, results and R scripts.
+The [project file](Projects/MRI_SVM/schizophrenia-mri-svm.md) includes the workflow, figures, results and R scripts.
 
 <p align="center">· · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · ·</p>
 <div align="left">
@@ -26,7 +26,7 @@ The [project file](Projects/schizophrenia-mri-svm.md) includes the workflow, fig
  
 As an intern, my supervisor and I planned and initiated development of an EEG-processing pipeline for machine-learning-based biomarker detection. Here I analyse an open dataset to determine whether Parkinson's patients are at risk of cognitive decline.
 
-The [project file](Projects/PD_EEG_GITHUB.md) includes descriptions of the coding project.
+The [project file](Projects/EEG-PROCESSOR/PD_EEG_GITHUB.md) includes descriptions of the coding project.
 
 <p align="center">· · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · ·</p>
 <div align="left">
