@@ -57,7 +57,7 @@ The [project file](Projects/brainix-mri-preprocessing.md) includes descriptions 
 
 A collection of Python models and exercises from the University of Washington online Computational Neuroscience course. 
 
-The [project file](Projects/UW-COMPNEURO/uw-comp-neuro-course-models.md) includes short descriptions of the models and the code for each one.
+The [project file](Projects/UW-CompNeuro/uw-comp-neuro-course-models.md) includes short descriptions of the models and the code for each one.
 
 <p align="center">· · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · ·</p>
 <div align="left">
