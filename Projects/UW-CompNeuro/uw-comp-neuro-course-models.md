@@ -53,7 +53,7 @@ plt.title('Poisson check: variance vs mean')
 plt.legend()
 plt.show()
 ```
-![](Figures/poisson_check.png)
+![](UW-Figures/poisson_check.png)
 
 ### Population Vector Decoding
 
@@ -256,7 +256,7 @@ Path("Figures").mkdir(exist_ok=True)
 plt.savefig("Figures/ISI_distributions.png", dpi=160)
 plt.show()
 ```
-![ISI distributions](Figures/ISI_distributions.png)
+![ISI distributions](UW-Figures/ISI_distributions.png)
 
 ---
 
@@ -366,7 +366,7 @@ plt.show()
 print("Spike Count:", spike_counts)
 ```
 
-![Spike Count Vs. Synaptic time to peak](Figures/Spike_count.png)
+![Spike Count Vs. Synaptic time to peak](UW-Figures/Spike_count.png)
 
 ---
 
@@ -427,6 +427,6 @@ principal_eigenvector = vecs[:, np.argmax(vals)]
 print("Principal eigenvector:", principal_eigenvector)
 print("Length of principal eigenvector:", np.linalg.norm(principal_eigenvector))
 ```
-![Mean-centred input data](Figures/mean_centred.png)
+![Mean-centred input data](UW-Figures/mean_centred.png)
 
 ---
