@@ -22,7 +22,7 @@ The [project file](Projects/MRI_SVM/schizophrenia-mri-svm.md) includes the workf
 <p align="center">· · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · ·</p>
 <div align="left">
 
-### EEG Processor (WORK IN PROGRESS)
+### EEG Processor
  
 As an intern, my supervisor and I planned and initiated development of an EEG-processing pipeline for machine-learning-based biomarker detection. Here I analyse an open dataset to determine whether Parkinson's patients are at risk of cognitive decline.
 
