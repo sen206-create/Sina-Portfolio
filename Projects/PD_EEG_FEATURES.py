@@ -1,9 +1,3 @@
-"""Extract two slowing features from saved EEG epochs; no preprocessing rerun.
-
-Run: python PD_EEG_FEATURES.py
-Place participants.tsv beside this script if Desktop access is restricted.
-"""
-
 import csv
 from collections import Counter
 from pathlib import Path
