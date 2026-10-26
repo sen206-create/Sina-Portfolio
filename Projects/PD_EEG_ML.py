@@ -1,10 +1,3 @@
-"""Two-feature logistic regression with participant-level cross-validation.
-
-Permutation testing uses scikit-learn's documented permutation_test_score:
-https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.permutation_test_score.html
-No feature selection, model search or threshold tuning is performed.
-"""
-
 from pathlib import Path
 
 import matplotlib
