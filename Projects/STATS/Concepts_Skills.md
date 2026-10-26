@@ -111,7 +111,7 @@ The model estimates showed that:
   
 These results suggest that puromycin treatment was associated with a higher maximum reaction rate, rather than the expected reduction. However, a direct statistical comparison between conditions was not included in this analysis. The treatment labels should therefore be checked before concluding how puromycin affects enzyme activity.
 
-![](Figures/nlr2.png)
+![](Figures/nlr.png)
 
 ## Section 7: Categorical Data Analysis
 
