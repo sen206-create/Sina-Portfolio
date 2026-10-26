@@ -1,9 +1,3 @@
-"""Compare EEG slowing features between PD and controls.
-
-Run after PD_EEG_FEATURES.py. Uses two-sided Welch tests and a
-Bonferroni correction for the two planned feature comparisons.
-"""
-
 from pathlib import Path
 
 import matplotlib
