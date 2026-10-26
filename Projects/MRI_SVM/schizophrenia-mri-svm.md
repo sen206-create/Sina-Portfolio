@@ -8,7 +8,7 @@ I used that paper as a starting point for learning the approach. My question was
 
 This gave me a chance to learn more about SPM, CAT and the decisions involved in evaluating a classifier.
 
-[View the R scripts and running instructions](MRI_SVM/README.md)
+[View the R scripts and running instructions](MRI_SVM/Scripts/README.md)
 
 ## The dataset and tools
 
