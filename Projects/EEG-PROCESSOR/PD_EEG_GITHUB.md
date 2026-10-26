@@ -6,7 +6,7 @@
 >
 > This is an exploratory analysis with internal cross-validation, not a validated diagnostic tool.
 
-[Preprocessing](PD_EEG_FIRST.py) · [Feature extraction](PD_EEG_FEATURES.py) · [Group comparisons](PD_EEG_COMPARE.py) · [Machine learning](PD_EEG_ML.py)
+[Preprocessing](Scripts/PD_EEG_FIRST.py) · [Feature extraction](Scripts/PD_EEG_FEATURES.py) · [Group comparisons](Scripts/PD_EEG_COMPARE.py) · [Machine learning](Scripts/PD_EEG_ML.py)
 
 ## What I wanted to investigate
 
