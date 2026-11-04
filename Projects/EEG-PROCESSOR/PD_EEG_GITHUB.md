@@ -14,7 +14,7 @@ The question was whether the Parkinson’s disease group showed signs of EEG slo
 
 I kept the analysis focused on two features: relative theta power and dominant frequency between 4 and 13 Hz. I wanted a pipeline I could understand and explain, from the original recordings to the final predictions.
 
-The scientific motivation came from [Geraedts et al. (2018), Clinical correlates of quantitative EEG in Parkinson disease](https://pubmed.ncbi.nlm.nih.gov/30291182/). My analysis uses Welch spectral estimates rather than their wavelet-based measures, so it is not a replication of that paper.
+The scientific motivation came from [Geraedts et al. (2018), Clinical correlates of quantitative EEG in Parkinson disease](https://pubmed.ncbi.nlm.nih.gov/30291182/).
 
 ## The dataset
 
