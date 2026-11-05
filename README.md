@@ -26,7 +26,7 @@ The [project file](Projects/MRI_SVM/schizophrenia-mri-svm.md) includes the workf
  
 As an intern, my supervisor and I planned and initiated development of an EEG-processing pipeline for machine-learning-based biomarker detection. 
 
-The [project file](Projects/EEG-PROCESSOR/PD_EEG_GITHUB.md) includes descriptions of the coding project.
+The [project file](Projects/EEG-PROCESSOR/PD_EEG_GITHUB_UPDATE.md) includes descriptions of the coding project.
 
 <p align="center">· · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · ·</p>
 <div align="left">
