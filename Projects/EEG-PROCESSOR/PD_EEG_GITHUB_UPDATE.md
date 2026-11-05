@@ -130,15 +130,13 @@ I compared logistic regression, RBF SVM and random forest using theta alone and 
 | Both | RBF SVM | 67.89% | 10.48 | 0.724 |
 | Both | Random forest | 65.56% | 9.85 | 0.748 |
 
-Fold SD describes variation across the outer folds, not a confidence interval.
-
 ## What I found
 
 Theta-only models matched or exceeded the balanced accuracy of combined-feature models across all three classifiers. Random forest had the highest observed scores, but its balanced accuracy was only 0.28 percentage points above logistic regression. More complex models did not produce a clear gain in classification performance.
 
 I retain theta-only logistic regression as the interpretable reference, with random forest as the leading alternative. The model comparison is exploratory; it does not establish a definitive winner or independent validation of the selected model.
 
-The main improvement was a more systematic evaluation of my original choices—not a dramatic increase in accuracy.
+The main improvement was a more systematic evaluation of my original choices as I was unable to achieve a large increase in accuracy.
 
 ## References
 
