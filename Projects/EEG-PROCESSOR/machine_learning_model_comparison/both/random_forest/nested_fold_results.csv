@@ -1,0 +1,6 @@
+Feature set,Model,Fold,Best parameters,Best inner balanced accuracy,Outer balanced accuracy,Outer ROC AUC
+both,random_forest,1,"{""classifier__max_depth"": null, ""classifier__min_samples_leaf"": 5}",0.6946428571428571,0.775,0.845
+both,random_forest,2,"{""classifier__max_depth"": 2, ""classifier__min_samples_leaf"": 2}",0.74375,0.575,0.6325000000000001
+both,random_forest,3,"{""classifier__max_depth"": 4, ""classifier__min_samples_leaf"": 5}",0.73125,0.75,0.8275
+both,random_forest,4,"{""classifier__max_depth"": null, ""classifier__min_samples_leaf"": 2}",0.7107142857142857,0.6,0.74
+both,random_forest,5,"{""classifier__max_depth"": 4, ""classifier__min_samples_leaf"": 5}",0.69375,0.5777777777777777,0.6972222222222222

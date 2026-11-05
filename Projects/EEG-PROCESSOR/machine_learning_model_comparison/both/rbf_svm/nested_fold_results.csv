@@ -1,0 +1,6 @@
+Feature set,Model,Fold,Best parameters,Best inner balanced accuracy,Outer balanced accuracy,Outer ROC AUC
+both,rbf_svm,1,"{""classifier__C"": 10, ""classifier__gamma"": 0.1}",0.6357142857142858,0.7,0.835
+both,rbf_svm,2,"{""classifier__C"": 0.1, ""classifier__gamma"": 1}",0.7375,0.525,0.545
+both,rbf_svm,3,"{""classifier__C"": 10, ""classifier__gamma"": 0.1}",0.6875,0.675,0.75
+both,rbf_svm,4,"{""classifier__C"": 1, ""classifier__gamma"": 0.1}",0.66875,0.675,0.6900000000000001
+both,rbf_svm,5,"{""classifier__C"": 10, ""classifier__gamma"": 0.1}",0.65625,0.8194444444444444,0.8

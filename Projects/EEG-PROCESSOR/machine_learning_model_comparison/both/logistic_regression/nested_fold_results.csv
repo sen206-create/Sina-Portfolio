@@ -1,0 +1,6 @@
+Feature set,Model,Fold,Best parameters,Best inner balanced accuracy,Outer balanced accuracy,Outer ROC AUC
+both,logistic_regression,1,"{""classifier__C"": 0.1}",0.6526785714285714,0.8,0.915
+both,logistic_regression,2,"{""classifier__C"": 1}",0.74375,0.55,0.6
+both,logistic_regression,3,"{""classifier__C"": 0.1}",0.7375,0.7,0.78
+both,logistic_regression,4,"{""classifier__C"": 0.1}",0.725,0.7,0.685
+both,logistic_regression,5,"{""classifier__C"": 1}",0.68125,0.6777777777777778,0.8
