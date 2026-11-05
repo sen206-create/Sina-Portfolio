@@ -115,7 +115,7 @@ I used five outer folds for evaluation and five inner folds to select hyperparam
 | Dominant frequency only | 45.22% | 0.507 |
 | Both | 68.56% | 0.756 |
 
-Theta alone had the highest balanced accuracy. Dominant frequency alone showed little discrimination, although combining the features improved AUC relative to theta alone.
+Theta alone had the highest balanced accuracy. Dominant frequency alone showed little discrimination, although combining the features improved AUC relative to theta alone. Because dominant frequency alone performed close to chance and did not provide useful discriminative information, it was not carried forward into the later SVM and random-forest comparisons.
 
 ### Comparing models
 
