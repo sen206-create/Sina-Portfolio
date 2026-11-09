@@ -64,7 +64,7 @@ This is the second test. The red line marks the observed 59.2% balanced accuracy
 
 ![](Figures/balanced_accuracy.png)
 
-A logistic regression using age, gender, scanner and the ghosting flag reached 68.2% balanced accuracy, higher than the MRI model's 59.2%. When I excluded scans flagged for ghosting and retrained, MRI balanced accuracy was 52.0%. Training on one scanner and testing on the other gave 54.0% and 55.3%.
+A logistic regression using age, gender, scanner and the ghosting flag reached 68.2% balanced accuracy, higher than the MRI model's 59.2%. When I excluded scans flagged for ghosting and retrained, MRI balanced accuracy was 52.0%. Scanner-based checks gave balanced accuracies of 53.6% and 55.3% for scanner 35343, and 56.3% and 54.0% for scanner 35426.
 
 These comparisons made me more cautious about the original result. The subsets differ in size and composition, so the changes cannot be attributed to artifacts or scanners alone. I have not demonstrated that MRI adds predictive value beyond the metadata.
 
