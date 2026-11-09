@@ -1,0 +1,5 @@
+"metric","estimate","lower","upper","interpretation"
+"accuracy",0.708571428571429,0.651428571428571,0.765714285714286,"Descriptive fixed-prediction bootstrap; not full CV uncertainty"
+"sensitivity",0.32,0.2,0.46,"Descriptive fixed-prediction bootstrap; not full CV uncertainty"
+"specificity",0.864,0.8,0.92,"Descriptive fixed-prediction bootstrap; not full CV uncertainty"
+"balanced_accuracy",0.592,0.522,0.664,"Descriptive fixed-prediction bootstrap; not full CV uncertainty"
